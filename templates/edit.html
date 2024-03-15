@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Edit{% endblock title %}
+{% block content %}
+<form class="p-2 bg-light" action="/edit/{{member.id}}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Member Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{member.name}}">
+    </div>
+    <div class="form-group">
+        <label for="name">Member Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{member.email}}">
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock content %}

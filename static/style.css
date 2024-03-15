@@ -1,0 +1,51 @@
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0 ;
+    
+}
+.bg-head{
+    background-color: lightcoral;
+}
+.form{
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.1);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 70%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    visibility: hidden;
+    transition: all .3s;
+    /* margin-top: 20px; */
+}
+.addbutton{
+    position: sticky;
+    top: 0;
+}
+.table{
+    height: 400px;
+    overflow: auto;
+}
+.form-open{
+    top: 28%;
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+}
+
+@media screen and (max-width: 770px) {
+    .form{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .form{
+        width: 90%;
+    }
+}
+::-webkit-scrollbar{
+    display: none;
+}

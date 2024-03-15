@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+<div class="dashboard">
+    <button class="btn btn-primary btn-block my-1 addbutton" onclick="openform()" id="button">Add +</button>
+    <form class="px-4 py-2 bg-dark text-light form" action="/" method="post" id="form">
+        {% csrf_token %}
+        <h3>Add Member Here</h3>
+        <hr class="my-2">
+        <div class="form-group">
+          <label for="name">Member Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Member Name">
+        </div>
+        <div class="form-group">
+            <label for="name">Member Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Member Email ID">
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <hr class="my-2 text-light">
+        <button type="button" class="btn btn-outline-secondary" onclick="closeform()">Cancel</button>
+      </form>
+      <table class="table table-hover table-dark table-sm table-bordered text-center">
+        <thead>
+          <tr>
+            <th scope="col">S no.</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            {% if user.is_authenticated %}
+                <th>View Profiles</th>
+            {% endif %}
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for x in members %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{x.name}}</td>
+                <td>{{x.email}}</td>
+                {% if user.is_authenticated %}
+                    <td><a href="view/{{x.id}}" class="nav-link">View</a></td>
+                {% endif %}
+                <td class="d-flex justify-content-around">
+                    <a href="edit/{{x.id}}" class="btn btn-outline-primary px-4">Edit</a>
+                    <a href="delete/{{x.id}}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>      
+            {% endfor %}
+          
+        </tbody>
+      </table>
+      
+</div>
+{% endblock content %}
